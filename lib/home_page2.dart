@@ -28,20 +28,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     ),
   ];
 
-  List<String> words = [
-    'This is Page One',
-    'This is Page Two',
-    'This is Page Three',
-  ];
-
   int currentIndex = 0;
 
   //constants colors
-  List<Color> colors = [
-   const Color(0xff000000),
-   const Color(0xfffcecd0),
-   const Color(0xffb6d7e4)
-  ];
+  Color black = const Color(0xff000000);
+  Color cream = const Color(0xfffcecd0);
+  Color blue = const Color(0xffb6d7e4);
 
   @override
   void initState() {
@@ -64,19 +56,16 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return Scaffold(
       backgroundColor: const Color(0xff292929),
       body: SafeArea(child: Column(children: [
-        AnimatedSwitcher(
+        SlideTransition(
+          position: hoverAnimation,
+          child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 700),
-          child: Container(
+          child: Image.asset(
+          products[currentIndex].path,
             key: ValueKey<int>(currentIndex),
-            child: Text(
-            words[currentIndex],
-            style: TextStyle(
-              color: colors[currentIndex],
-              fontSize: 15,
-              fontWeight: FontWeight.bold
-            )
-          ),)
+          ),
         ),
+      ),
       const SizedBox(
         height: 30,
       ),
